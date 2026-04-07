@@ -1,0 +1,274 @@
+@model List<BookCatalogApp.Models.Book>
+
+@{
+    ViewData["Title"] = "Каталог книг";
+}
+
+<style>
+    .container {
+        display: flex;
+        max-width: 1100px;
+        margin: 10px auto 0;
+        padding: 0 20px;
+        gap: 20px;
+    }
+
+    main {
+        flex: 1;
+        padding-top: 10px;
+    }
+
+    aside {
+        width: 240px;
+        background: rgba(242, 193, 193, 0.7);
+        padding: 15px;
+        border-radius: 10px;
+        height: fit-content;
+    }
+
+    .sidebar-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    .filter-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .filter-form label {
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    .filter-form select,
+    .filter-form input[type="number"],
+    .filter-form input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #2d1b36;
+        background: white;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .year-range {
+        display: flex;
+        gap: 8px;
+    }
+
+    .year-range input {
+        width: 100%;
+    }
+
+    .filter-btn {
+        display: block;
+        margin-top: 10px;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        background: #2d1b36;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.2s ease;
+    }
+
+    .filter-btn:hover {
+        background: #b4004e;
+    }
+
+    .reset-btn {
+        display: block;
+        margin-top: 8px;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        background: #ffffff;
+        color: #2d1b36;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        box-sizing: border-box;
+        border: 1px solid #2d1b36;
+    }
+
+    .reset-btn:hover {
+        background: #f8eaea;
+    }
+
+    .page-title {
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0 0 20px;
+    }
+
+    .books-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .book {
+        background: #ffe4e1;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .book:hover {
+        transform: scale(1.03);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cover {
+        width: 100%;
+        height: 150px;
+        background: #f7d9d9;
+        border: 1px solid #2d1b36;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .book h2 {
+        font-size: 18px;
+        margin: 10px 0 8px;
+    }
+
+    .book h3 {
+        font-size: 14px;
+        font-weight: normal;
+        margin: 4px 0;
+    }
+
+    .book p {
+        font-size: 14px;
+        margin: 6px 0 0;
+    }
+
+    .book a {
+        text-decoration: none;
+        color: #2d1b36;
+    }
+
+    .empty-message {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 40px;
+    }
+</style>
+
+
+<div class="container">
+    <aside>
+        <div class="sidebar-title">Фильтры</div>
+
+        <form method="get" asp-controller="Books" asp-action="Index" class="filter-form">
+            <div>
+                <label for="genre">По жанру</label>
+                <select name="genre" id="genre">
+                    <option value="">Все жанры</option>
+                    @foreach (var genre in ViewBag.Genres)
+                    {
+                        if ((string?)ViewBag.SelectedGenre == genre)
+                        {
+                            <option value="@genre" selected>@genre</option>
+                        }
+                        else
+                        {
+                            <option value="@genre">@genre</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div>
+                <label for="author">По автору</label>
+                <select name="author" id="author">
+                    <option value="">Все авторы</option>
+                    @foreach (var author in ViewBag.Authors)
+                    {
+                        if ((string?)ViewBag.SelectedAuthor == author)
+                        {
+                            <option value="@author" selected>@author</option>
+                        }
+                        else
+                        {
+                            <option value="@author">@author</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div>
+                <label>По году</label>
+                <div class="year-range">
+                    <input type="number" name="yearFrom" placeholder="От" value="@ViewBag.YearFrom" />
+                    <input type="number" name="yearTo" placeholder="До" value="@ViewBag.YearTo" />
+                </div>
+            </div>
+
+            <div>
+                <label for="title">По названию</label>
+                <input type="text" name="title" id="title" placeholder="Введите название" value="@ViewBag.TitleQuery" />
+            </div>
+
+            <button type="submit" class="filter-btn">Применить</button>
+            <a href="/Books" class="reset-btn">Сбросить</a>
+        </form>
+    </aside>
+
+    <main>
+        <h1 class="page-title">Каталог книг</h1>
+
+        @if (Model.Count == 0)
+        {
+            <p class="empty-message">По выбранным фильтрам книги не найдены</p>
+        }
+        else
+        {
+            <div class="books-grid">
+                @foreach (var book in Model)
+                {
+                    <article class="book">
+                        <a asp-controller="Books" asp-action="Details" asp-route-id="@book.Id">
+                            <div class="cover">
+                                <img src="@book.CoverPath" alt="@book.Title" />
+                            </div>
+                        </a>
+
+                        <h2>
+                            <a asp-controller="Books" asp-action="Details" asp-route-id="@book.Id">
+                                @book.Title
+                            </a>
+                        </h2>
+
+                        <h3>Автор: @book.Author</h3>
+                        <h3>Год: @book.Year</h3>
+                        <p>Жанр: @book.Genre</p>
+                    </article>
+                }
+            </div>
+        }
+    </main>
+</div>

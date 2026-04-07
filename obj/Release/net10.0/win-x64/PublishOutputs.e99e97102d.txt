@@ -1,0 +1,17 @@
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/BookCatalogApp.exe
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/appsettings.Development.json
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/appsettings.json
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/BookCatalogApp.dll
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/BookCatalogApp.runtimeconfig.json
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/BookCatalogApp.pdb
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/Microsoft.Data.Sqlite.dll
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/Microsoft.EntityFrameworkCore.dll
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/Microsoft.EntityFrameworkCore.Abstractions.dll
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/Microsoft.EntityFrameworkCore.Relational.dll
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/Microsoft.EntityFrameworkCore.Sqlite.dll
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/Microsoft.Extensions.DependencyModel.dll
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/SQLitePCLRaw.batteries_v2.dll
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/SQLitePCLRaw.core.dll
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/SQLitePCLRaw.provider.e_sqlite3.dll
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/e_sqlite3.dll
+/Users/anastasia/Desktop/lr4/BookCatalogApp/bin/Release/net10.0/win-x64/publish/BookCatalogApp.deps.json

@@ -1,0 +1,140 @@
+@{
+    ViewData["Title"] = "Аудиокниги";
+}
+
+<style>
+    .container {
+        display: flex;
+        margin: 20px;
+        gap: 20px;
+    }
+
+    aside {
+        width: 220px;
+        background: rgba(242, 193, 193, 0.8);
+        padding: 15px;
+        border-radius: 10px;
+        height: fit-content;
+    }
+
+    .sidebar-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    aside ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    aside ul li {
+        margin: 8px 0;
+    }
+
+    aside ul li a {
+        text-decoration: none;
+        color: #2d1b36;
+        transition: color 0.2s;
+    }
+
+    aside ul li a:hover {
+        color: #b4004e;
+    }
+
+    .filter-btn {
+        display: block;
+        margin-top: 15px;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        background: #2d1b36;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    .section-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .audio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .book {
+        background: #ffe4e1;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .cover {
+        width: 100%;
+        height: 150px;
+        background: #f7d9d9;
+        border: 1px solid #2d1b36;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .book a {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+
+<div class="container">
+    <aside>
+        <div class="sidebar-title">Фильтры</div>
+        <ul>
+            <li><a href="#">По жанру</a></li>
+            <li><a href="#">По автору</a></li>
+            <li><a href="#">По длительности</a></li>
+            <li><a href="#">По диктору</a></li>
+        </ul>
+        <button class="filter-btn">Применить</button>
+    </aside>
+
+    <main>
+        <div class="section-title">Каталог аудиокниг</div>
+
+        <div class="audio-grid">
+            <article class="book">
+                <a href="#">
+                    <div class="cover"><img src="/images/1984.jpg" alt="1984" /></div>
+                    <h2>1984</h2>
+                    <h3>Автор: Джордж Оруэлл</h3>
+                </a>
+            </article>
+
+            <article class="book">
+                <a href="#">
+                    <div class="cover"><img src="/images/war.jpg" alt="Война и мир" /></div>
+                    <h2>Война и мир</h2>
+                    <h3>Автор: Лев Толстой</h3>
+                </a>
+            </article>
+        </div>
+    </main>
+</div>

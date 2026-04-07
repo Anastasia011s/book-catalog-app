@@ -1,0 +1,236 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7d9d9;
+    color: #2d1b36;
+}
+
+header {
+    background-color: #f7d9d9;
+    padding: 16px 0 14px;
+    text-align: center;
+    border-bottom: 2px solid #2d1b36;
+}
+
+.site-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #2d1b36;
+    margin: 0;
+}
+
+        .back-link {
+            position: absolute;
+            left: 20px;
+            top: 18px;
+            font-size: 14px;
+            color: #2d1b36;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link::before { content: "← "; }
+        .back-link:hover { color: #b4004e; }
+/* === НАВИГАЦИЯ === */
+nav {
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #2d1b36;
+    font-size: 15px;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: #b4004e;
+}
+
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 40px;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    padding: 6px 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-bar button {
+    margin-left: 10px;
+    padding: 6px 12px;
+    background: #2d1b36;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.search-bar button:hover {
+    background: #b4004e;
+}
+
+
+section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 12px 0 8px;
+    color: #2d1b36;
+    text-align: left;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+.book {
+    background: #ffe4e1;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.book:hover {
+    transform: scale(1.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cover {
+    width: 100%;
+    height: 150px;
+    background: #f7d9d9;
+    border: 1px solid #2d1b36;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    border-radius: 6px;
+    background-color: #f7d9d9; 
+}
+
+
+
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 12px 0 8px;
+    color: #2d1b36;
+}
+
+h3 {
+    font-size: 15px;
+    margin: 4px 0;
+    font-weight: normal;
+}
+
+
+.article-box {
+    background: #ffe4e1;
+    padding: 20px 25px;
+    border-radius: 10px;
+    line-height: 1.6;
+    margin-top: 30px;
+}
+
+.article-box p {
+    margin-bottom: 16px;
+}
+
+
+footer {
+    text-align: center;
+    padding: 16px 10px;
+    font-size: 14px;
+    color: #2d1b36;
+    border-top: 2px solid #2d1b36;
+    margin-top: 30px;
+}
+.book {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.book-tooltip {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    background: rgba(180, 0, 78, 0.9);
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+
+.book-tooltip.visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+.genre-filter {
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #2d1b36;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+    transition: border 0.2s ease;
+}
+
+.genre-filter:hover {
+    border: 1px solid #b4004e;
+}
+
+.book {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}

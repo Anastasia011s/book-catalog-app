@@ -1,0 +1,159 @@
+@model BookCatalogApp.Models.Book
+
+@{
+    ViewData["Title"] = "Добавить книгу";
+}
+
+<style>
+    .back-link {
+        position: absolute;
+        left: 20px;
+        top: 18px;
+        font-size: 14px;
+        color: #2d1b36;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .back-link::before {
+        content: "← ";
+    }
+
+    .back-link:hover {
+        color: #b4004e;
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #ffe4e1;
+        padding: 25px 30px;
+        border-radius: 10px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 0;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #2d1b36;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    input[type="file"] {
+        border: none;
+        background: none;
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        margin-top: 10px;
+        background: #2d1b36;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+        transition: background 0.2s ease;
+    }
+
+    .submit-btn:hover {
+        background: #b4004e;
+    }
+
+    .validation-error {
+        color: #b4004e;
+        font-size: 13px;
+        margin-top: 4px;
+        display: block;
+    }
+
+    .success-message {
+        color: green;
+        text-align: center;
+        margin-bottom: 12px;
+        font-weight: bold;
+    }
+</style>
+
+
+<div class="form-container">
+    <h2>Добавить книгу</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="success-message">@TempData["SuccessMessage"]</div>
+    }
+
+    <div asp-validation-summary="All" class="validation-error"></div>
+
+    <form action="/Books/Create" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div>
+            <label for="Title">Название книги</label>
+            <input asp-for="Title" id="Title" type="text" />
+            <span asp-validation-for="Title" class="validation-error"></span>
+        </div>
+
+        <div>
+            <label for="Author">Автор</label>
+            <input asp-for="Author" id="Author" type="text" />
+            <span asp-validation-for="Author" class="validation-error"></span>
+        </div>
+
+        <div>
+            <label for="Genre">Жанр</label>
+            <input asp-for="Genre" id="Genre" type="text" />
+            <span asp-validation-for="Genre" class="validation-error"></span>
+        </div>
+
+        <div>
+            <label for="Year">Год издания</label>
+            <input asp-for="Year" id="Year" type="number" />
+            <span asp-validation-for="Year" class="validation-error"></span>
+        </div>
+
+        <div>
+            <label for="Description">Описание</label>
+            <textarea asp-for="Description" id="Description"></textarea>
+            <span asp-validation-for="Description" class="validation-error"></span>
+        </div>
+
+        <div>
+            <label for="coverFile">Обложка книги</label>
+            <input type="file" name="coverFile" id="coverFile" accept="image/*" />
+        </div>
+
+        <button type="submit" class="submit-btn">Добавить книгу</button>
+    </form>
+</div>

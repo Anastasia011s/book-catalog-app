@@ -1,0 +1,234 @@
+
+        .back-link {
+            position: absolute;
+            left: 20px;
+            top: 18px;
+            font-size: 14px;
+            color: #2d1b36;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link::before { content: "← "; }
+        .back-link:hover { color: #b4004e; }
+
+        .book-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: #ffe4e1;
+            padding: 20px 30px;
+            border-radius: 10px;
+        }
+
+
+        .book-layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            flex-wrap: nowrap; 
+        }
+
+        .left {
+            width: 230px;
+            flex-shrink: 0;
+        }
+
+        .cover {
+            width: 200px;
+            height: 300px;
+            background: #f7d9d9;
+            border: 1px solid #2d1b36;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        .meta p {
+            margin: 6px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #2d1b36;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        button:hover { background: #b4004e; }
+
+        .right {
+            flex: 1;
+            min-width: 400px;
+        }
+
+        .description {
+            margin-bottom: 25px;
+        }
+
+        .description h2 {
+            margin-top: 0;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .reviews {
+            margin-top: 25px;
+        }
+
+        .review {
+            background: #f2c1c1;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin: 10px 0;
+        }
+
+        .review p { margin: 5px 0; }
+
+        .rating { font-weight: bold; }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(45, 27, 54, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 100;
+}
+
+.modal-overlay.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    position: relative;
+    background: #ffe4e1;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    animation: scaleIn 0.3s ease;
+}
+
+.modal-image {
+    max-width: 400px;
+    max-height: 500px;
+    border-radius: 8px;
+    display: block;
+}
+
+.close-modal {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: #b4004e;
+    border: none;
+    color: white;
+    font-size: 22px;
+    line-height: 1;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.close-modal:hover {
+    background: #2d1b36;
+}
+
+/* Анимация появления */
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.cover img {
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+}
+
+.cover img:hover {
+    transform: scale(1.05);
+}
+.add-review {
+    margin-top: 20px;
+    padding: 15px;
+    background: #ffe4e1;
+    border-radius: 8px;
+}
+
+.add-review h3 {
+    margin-top: 0;
+    color: #2d1b36;
+}
+
+.add-review input,
+.add-review textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #2d1b36;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.add-review textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+#addReviewBtn {
+    background: #2d1b36;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: bold;
+}
+
+#addReviewBtn:hover {
+    background: #b4004e;
+}
+
+.new-review {
+    background: #fff5f5;
+    border-left: 4px solid #b4004e;
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

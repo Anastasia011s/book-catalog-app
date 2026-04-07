@@ -1,0 +1,179 @@
+@model List<BookCatalogApp.Models.Book>
+
+@{
+    ViewData["Title"] = "Моя библиотека";
+}
+
+<style>
+    .container {
+        display: flex;
+        margin: 20px;
+    }
+
+    aside {
+        width: 220px;
+        background: rgba(242, 193, 193, 0.8);
+        padding: 15px;
+        border-radius: 10px;
+        margin-right: 20px;
+        height: fit-content;
+        box-sizing: border-box;
+    }
+
+    .sidebar-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    aside ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    aside ul li {
+        margin: 8px 0;
+    }
+
+    aside ul li a {
+        text-decoration: none;
+        color: #2d1b36;
+        transition: color 0.2s;
+    }
+
+    aside ul li a:hover {
+        color: #b4004e;
+    }
+
+    .filter-btn {
+        display: block;
+        margin-top: 15px;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+        background: #2d1b36;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.2s ease;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .filter-btn:hover {
+        background: #b4004e;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #ffe4e1;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    th, td {
+        border: 1px solid #2d1b36;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background: #f2c1c1;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background: #f8dada;
+    }
+
+    tr:hover {
+        background: #f2bcbc;
+    }
+
+    table td:first-child {
+        font-weight: bold;
+        color: #b4004e;
+    }
+
+    .delete-btn {
+        padding: 8px 12px;
+        background: #2d1b36;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .delete-btn:hover {
+        background: #b4004e;
+    }
+</style>
+
+
+
+<div class="container">
+    <aside>
+        <div class="sidebar-title">Фильтры</div>
+        <ul>
+            <li><a href="/Library?status=Прочитано">Прочитанные</a></li>
+            <li><a href="/Library?status=В процессе">В процессе</a></li>
+            <li><a href="/Library?status=Хочу прочитать">Хочу прочитать</a></li>
+            <li><a href="/Library?status=Аудиокнига">Аудиокниги</a></li>
+        </ul>
+
+        <a class="filter-btn" href="/Library">Показать все</a>
+
+        <div style="margin-top:10px;font-size:13px;">
+            Фильтр: <b>@ViewBag.SelectedStatus</b>
+        </div>
+    </aside>
+
+    <main>
+        <div class="section-title"><b>Моя библиотека</b></div>
+        <p style="text-align:justify;">
+            Здесь собраны все книги, которые вы добавили в свою личную библиотеку —
+            прочитанные, запланированные и те, к которым вы хотите вернуться позже.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Автор</th>
+                    <th>Год</th>
+                    <th>Статус</th>
+                    <th>Дата добавления</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td>@book.Title</td>
+                        <td>@book.Author</td>
+                        <td>@book.Year</td>
+                        <td>@book.LibraryStatus</td>
+                        <td>@(book.AddedAt?.ToString("dd.MM.yyyy"))</td>
+                        <td>
+                            <form asp-action="Remove" asp-controller="Library" method="post">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@book.Id" />
+                                <button type="submit" class="delete-btn">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div style="margin-top:20px;font-weight:bold;">
+            Всего книг: @Model.Count
+        </div>
+    </main>
+</div>

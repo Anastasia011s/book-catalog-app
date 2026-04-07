@@ -1,0 +1,88 @@
+@model BookCatalogApp.Models.Book
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+
+<main class="book-container">
+    <h1>@Model.Title</h1>
+
+    <div class="book-layout">
+        <div class="left">
+            <div class="cover">
+                <img src="@Model.CoverPath" alt="@Model.Title" />
+            </div>
+
+            <div class="meta">
+                <p><strong>Автор:</strong> @Model.Author</p>
+                <p><strong>Год:</strong> @Model.Year</p>
+                <p><strong>Жанр:</strong> @Model.Genre</p>
+            </div>
+
+            @* КНОПКА ДОБАВЛЕНИЯ В БИБЛИОТЕКУ *@
+            @if (string.IsNullOrWhiteSpace(Model.LibraryStatus))
+            {
+                <form asp-action="AddToLibrary" asp-controller="Books" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <button type="submit">Добавить в библиотеку</button>
+                </form>
+            }
+            else
+            {
+                <div style="margin-top:10px;font-weight:bold;color:#2d1b36;">
+                    Уже в библиотеке (@Model.LibraryStatus)
+                </div>
+            }
+        </div>
+
+        <div class="right">
+            <div class="description">
+                <h2>Описание романа</h2>
+                <p>@Model.Description</p>
+            </div>
+
+            <section class="reviews">
+                <h2>Отзывы читателей</h2>
+
+                @if (Model.Reviews != null && Model.Reviews.Any())
+                {
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <div class="review">
+                            <p><strong>@review.ReviewerName</strong></p>
+                            <p class="rating">@(new string('★', review.Rating))</p>
+                            <p>@review.ReviewText</p>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Пока нет отзывов.</p>
+                }
+
+                <div class="review" style="margin-top:20px;">
+                    <h3>Добавить отзыв</h3>
+
+                    <form asp-action="AddReview" asp-controller="Books" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@Model.Id" />
+
+                        <p>
+                            <input type="text" name="reviewerName" placeholder="Ваше имя"
+                                   style="width:100%;padding:10px;border-radius:6px;border:1px solid #2d1b36;" />
+                        </p>
+
+                        <p>
+                            <textarea name="reviewText" placeholder="Ваш отзыв"
+                                      style="width:100%;padding:10px;border-radius:6px;border:1px solid #2d1b36;min-height:100px;"></textarea>
+                        </p>
+
+                        <button type="submit">Отправить отзыв</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>

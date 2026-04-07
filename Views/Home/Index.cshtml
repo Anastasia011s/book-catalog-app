@@ -1,0 +1,282 @@
+﻿@{
+    ViewData["Title"] = "Главная";
+}
+
+<style>
+    .home-page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px 20px 10px;
+        box-sizing: border-box;
+    }
+
+    .search-bar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+    }
+
+    .search-bar input {
+        width: 220px;
+        padding: 8px 10px;
+        border-radius: 6px;
+        border: 1px solid #c9c9c9;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .search-bar button {
+        background: #b4004e;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: background 0.2s ease;
+    }
+
+    .search-bar button:hover {
+        background: #2d1b36;
+    }
+
+    .home-section {
+        margin-bottom: 38px;
+    }
+
+    .home-section .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 0 14px;
+        color: #2d1b36;
+        text-align: left;
+    }
+
+    .home-books-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        justify-content: center;
+        align-items: stretch;
+    }
+
+    .home-books-grid .book {
+        background: #ffe4e1;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        font-size: 14px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-sizing: border-box;
+    }
+
+    .home-books-grid .book:hover {
+        transform: scale(1.03);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .home-books-grid .cover {
+        width: 100%;
+        height: 320px;
+        background: #f7d9d9;
+        border: 1px solid #2d1b36;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .home-books-grid .cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 6px;
+        background-color: #f7d9d9;
+    }
+
+    .home-books-grid h2 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 10px 0 8px;
+    }
+
+    .home-books-grid h3 {
+        font-size: 14px;
+        font-weight: normal;
+        margin: 4px 0;
+    }
+
+    .home-books-grid a {
+        text-decoration: none;
+        color: #2d1b36;
+    }
+
+    .about-block {
+        margin-top: 8px;
+    }
+
+    .about-block p {
+        text-align: justify;
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    @@media (max-width: 1000px) {
+        .home-books-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @@media (max-width: 700px) {
+        .home-books-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .search-bar {
+            justify-content: stretch;
+            flex-wrap: wrap;
+        }
+
+        .search-bar input {
+            width: 100%;
+        }
+    }
+</style>
+<section id="bookOfDay" class="home-section">
+    <h2 class="section-title">📖 Книга дня</h2>
+
+    <div class="book-of-day-card">
+        <a id="bookOfDayLink" href="#">
+            <div class="book-of-day-cover">
+                <img id="bookOfDayImg" src="" alt="Книга дня" />
+            </div>
+        </a>
+
+        <div class="book-of-day-info">
+            <h2 id="bookOfDayTitle">Загрузка...</h2>
+            <p id="bookOfDayAuthor"></p>
+            <p id="bookOfDayYear"></p>
+
+            <a id="bookOfDayDetailsBtn" class="book-day-btn" href="#">
+                📖 Подробнее о книге »
+            </a>
+
+            <button id="bookOfDayBtn" type="button" class="book-day-secondary-btn">
+                Хочу другую
+            </button>
+
+            <div id="bookOfDayStatus"></div>
+        </div>
+    </div>
+</section>
+
+<main class="home-page">
+    <div class="search-bar">
+        <input type="text" placeholder="Поиск..." />
+        <button type="button">Вход</button>
+    </div>
+
+    <section class="home-section">
+        <h1 class="section-title">Рекомендуемые книги</h1>
+        <div class="home-books-grid">
+            <article class="book">
+                <a href="/Books/Details/2">
+                    <div class="cover">
+                        <img src="/images/war.jpg" alt="Война и мир" />
+                    </div>
+                </a>
+                <h2>
+                    <a href="/Books/Details/2">Война и мир</a>
+                </h2>
+                <h3>Автор: Лев Толстой</h3>
+                <h3>Год: 1869</h3>
+            </article>
+
+            <article class="book">
+                <a href="/Books/Details/3">
+                    <div class="cover">
+                        <img src="/images/master.jpg" alt="Мастер и Маргарита" />
+                    </div>
+                </a>
+                <h2>
+                    <a href="/Books/Details/3">Мастер и Маргарита</a>
+                </h2>
+                <h3>Автор: Михаил Булгаков</h3>
+                <h3>Год: 1967</h3>
+            </article>
+
+            <article class="book">
+                <a href="/Books/Details/4">
+                    <div class="cover">
+                        <img src="/images/crime.jpg" alt="Преступление и наказание" />
+                    </div>
+                </a>
+                <h2>
+                    <a href="/Books/Details/4">Преступление и наказание</a>
+                </h2>
+                <h3>Автор: Ф.М. Достоевский</h3>
+                <h3>Год: 1866</h3>
+            </article>
+        </div>
+    </section>
+
+    <section class="home-section">
+        <div class="section-title">Популярные книги</div>
+        <div class="home-books-grid">
+            <article class="book">
+                <a href="/Books/Details/6">
+                    <div class="cover">
+                        <img src="/images/anna.jpg" alt="Анна Каренина" />
+                    </div>
+                </a>
+                <h2>
+                    <a href="/Books/Details/6">Анна Каренина</a>
+                </h2>
+                <h3>Автор: Лев Толстой</h3>
+                <h3>Год: 1877</h3>
+            </article>
+
+            <article class="book">
+                <a href="/Books/Details/1">
+                    <div class="cover">
+                        <img src="/images/1984.jpg" alt="1984" />
+                    </div>
+                </a>
+                <h2>
+                    <a href="/Books/Details/1">1984</a>
+                </h2>
+                <h3>Автор: Джордж Оруэлл</h3>
+                <h3>Год: 1949</h3>
+            </article>
+
+            <article class="book">
+                <a href="/Books/Details/10">
+                    <div class="cover">
+                        <img src="/images/hobbit.jpg" alt="Хоббит" />
+                    </div>
+                </a>
+                <h2>
+                    <a href="/Books/Details/10">Хоббит</a>
+                </h2>
+                <h3>Автор: Дж. Р. Р. Толкин</h3>
+                <h3>Год: 1937</h3>
+            </article>
+        </div>
+    </section>
+
+    <section class="home-section about-block">
+        <div class="section-title">О проекте</div>
+        <p>
+            «Читай-Городок» — это уютное онлайн-пространство для любителей книг, где можно найти
+            художественную литературу, добавить книги в личную библиотеку, читать отзывы и открывать
+            для себя новые произведения. Проект объединяет читателей, авторов и ценителей аудиокниг,
+            создавая комфортную среду для вдохновения, общения и любви к литературе.
+        </p>
+    </section>
+</main>

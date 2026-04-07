@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Читай-Городок</title>
+
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/books.css" asp-append-version="true" />
+</head>
+<script src="~/js/hover-effect.js"></script>
+<script src="~/js/book-of-day.js"></script>
+<body>
+
+    <header class="main-header">
+        <div class="site-title">Читай-Городок 📖</div>
+
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/Books">Каталог книг</a></li>
+                <li><a href="/Audiobooks">Аудиокниги</a></li>
+                <li><a href="/Library">Моя библиотека</a></li>
+                <li><a href="/Books/Create">Добавить книгу</a></li>
+                <li><a href="/About">О нас</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        @RenderBody()
+    </main>
+
+    <footer>
+        Работу выполнил студент группы 6402-020302D Елизарова Анастасия
+    </footer>
+
+</body>
+</html>
